@@ -10,6 +10,9 @@ local redis = {}
 redis['host'] = '127.0.0.1'
 redis['port'] = 6379
 redis['password'] = 'wepieteam87542709'
+redis['prefix'] = 'url_service:'
+redis['info'] = 'info_ad:'
+redis['count'] = 'count_ad:'
 
 local err_msg = {}
 err_msg[42] = 'URL is invalid'

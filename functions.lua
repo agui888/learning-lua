@@ -29,13 +29,13 @@ function M.get_long_url(short_string)
     if err then
         return false, err
     end
-    local result, err = red:hget("url_service:info_ad:" .. short_string, "link")
+    local result, err = red:hget(config['redis']['prefix'] .. config['redis']['info'] .. short_string, "link")
     if err then
         return nil, 52
     end
     if result ~= ngx.null then
         local date = os.date("%Y%m%d")
-        red:incr("url_service:count_ad:" .. short_string .. ":" .. date)
+        red:incr(config['redis']['prefix'] .. config['redis']['count'] .. short_string .. ":" .. date)
         red:set_keepalive(10000, 100)
         return result
     else

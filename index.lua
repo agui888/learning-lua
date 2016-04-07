@@ -9,10 +9,12 @@ local config = require 'config'
 local functions = require 'functions'
 
 local short_string = ngx.re.sub(ngx.var.uri, "^/u/(.*)", "$1", "o")
-
+--ngx.say(short_string)
 local long_url, err = functions.get_long_url(short_string)
+
 if err then
-    functions.show_err(err)
+    functions.show_error(err)
+    return
 end
 
 ngx.redirect(long_url)

@@ -29,13 +29,13 @@ function M.get_long_url(short_string)
     if err then
         return false, err
     end
-    local result, err = red:hget(config['redis']['prefix'] .. config['redis']['info'] .. short_string, "link")
+    local result, err = red:hget(config['redis']['prefix'] .. "info_ad:" .. short_string, "link")
     if err then
         return nil, 52
     end
     if result ~= ngx.null then
         local date = os.date("%Y%m%d")
-        red:incr(config['redis']['prefix'] .. config['redis']['count'] .. short_string .. ":" .. date)
+        red:incr(config['redis']['prefix'] .. "count_ad:" .. short_string .. ":" .. date)
         red:set_keepalive(10000, 100)
         return result
     else
@@ -48,7 +48,8 @@ function M.show_error(err_code)
     result['status'] = 0
     result['error'] = err_code
     result['msg'] = config['err_msg'][err_code]
-    ngx.say(cjson.encode(result))
+    --    ngx.say(cjson.encode(result))
+    ngx.say(result['msg'])
     ngx.exit(ngx.HTTP_OK)
 end
 

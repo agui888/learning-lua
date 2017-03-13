@@ -9,7 +9,7 @@ local M = {}
 local redis = {}
 redis['host'] = '127.0.0.1'
 redis['port'] = 6379
-redis['password'] = 'wepieteam87542709'
+redis['password'] = ‘*****’
 redis['prefix'] = 'url_service:'
 
 local err_msg = {}
@@ -19,7 +19,7 @@ err_msg[51] = 'Redis is out of service'
 err_msg[52] = 'Getting data error'
 
 local default = {}
-default['url'] = 'http://fanqie.im'
+default['url'] = 'http://baidu.com'
 
 M['redis'] = redis
 M['err_msg'] = err_msg
